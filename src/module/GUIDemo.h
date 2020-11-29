@@ -14,6 +14,8 @@ public:
 
     virtual void Update();
 
+    virtual void OnWindowResize();
+
     virtual void Draw();
 
     virtual void Destroy();

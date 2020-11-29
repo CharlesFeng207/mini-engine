@@ -14,9 +14,7 @@ using namespace std;
 vector<IModule *> *modules = nullptr;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-//    glViewport(0, 0, width, height);
-//    ImGui::SetNextWindowPos(ImVec2(0, 0));
-//    ImGui::SetNextWindowSize(ImVec2(width, height));
+
     Context::ScreenWidth = width;
     Context::ScreenHeight = height;
     for (auto &module : *modules)
@@ -29,7 +27,7 @@ GLFWwindow *initWindows() {
     // after which we can configure GLFW using glfwWindowHint.
     if (!glfwInit()) {
         std::cout << "Failed to init GLFW " << std::endl;
-        return NULL;
+        return nullptr;
     }
 
     // The first argument of glfwWindowHint tells us what option we want to configure
@@ -43,20 +41,19 @@ GLFWwindow *initWindows() {
     // Note that on Mac OS X you need to add glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); to your initialization code for it to work
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-    GLFWwindow *window = glfwCreateWindow(Context::ScreenWidth, Context::ScreenHeight, "Mini-Engine", NULL, NULL);
-    if (window == NULL) {
+    GLFWwindow *window = glfwCreateWindow(Context::ScreenWidth, Context::ScreenHeight, "Mini-Engine", nullptr, NULL);
+    if (window == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return NULL;
+        return nullptr;
     }
     glfwMakeContextCurrent(window);
 
     // initialize GLAD before we call any OpenGL function:
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
-        return NULL;
+        return nullptr;
     }
-
 
     // the moment a user resizes the window the viewport should be adjusted as well.
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -66,7 +63,7 @@ GLFWwindow *initWindows() {
 
 void CreateModules() {
     modules = new vector<IModule *>();
-    modules->push_back(new GLDrawQuad());
+//    modules->push_back(new GLDrawQuad());
     modules->push_back(new GUIDemo());
 }
 
@@ -77,7 +74,7 @@ int main() {
 
     auto window = initWindows();
 
-    if (window == NULL)
+    if (window == nullptr)
         return -1;
 
     Context::CurWindow = window;

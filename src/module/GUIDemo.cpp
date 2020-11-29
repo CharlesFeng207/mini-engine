@@ -13,6 +13,7 @@ void GUIDemo::Init() {
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
+//    io.Fonts->AddFontFromFileTTF("../res/fonts/Font_king.OTF", 22.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
     // Setup Dear ImGui style
 //    ImGui::StyleColorsDark();
     ImGui::StyleColorsClassic();
@@ -27,6 +28,9 @@ void GUIDemo::Update() {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
+
+    OnWindowResize();
+
     ImGui::ShowDemoWindow(&show_demo_window);
     ImGui::Render();
     return;
@@ -87,5 +91,10 @@ void GUIDemo::Destroy() {
 
 GUIDemo::~GUIDemo() {
 
+}
+
+void GUIDemo::OnWindowResize() {
+    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(Context::ScreenWidth, Context::ScreenHeight), ImGuiCond_Always);
 }
 

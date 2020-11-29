@@ -9,17 +9,11 @@
 
 class Context {
 public:
-    static int ScreenWidth();
+    static int ScreenWidth;
 
-    static int ScreenHeight();
+    static int ScreenHeight;
 
-    static GLFWwindow *GetWindow();
-
-    static void SetWindow(GLFWwindow *window);
-
-private:
     static GLFWwindow *CurWindow;
-
 };
 
 

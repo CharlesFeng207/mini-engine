@@ -18,7 +18,7 @@ void GUIDemo::Init() {
     ImGui::StyleColorsClassic();
 
     // Setup Platform/Renderer bindings
-    ImGui_ImplGlfw_InitForOpenGL(Context::GetWindow(), true);
+    ImGui_ImplGlfw_InitForOpenGL(Context::CurWindow, true);
     ImGui_ImplOpenGL3_Init("#version 460");
 }
 

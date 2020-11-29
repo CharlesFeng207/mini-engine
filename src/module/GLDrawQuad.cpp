@@ -9,6 +9,8 @@
 
 void GLDrawQuad::Init() {
 
+    OnWindowResize();
+
     shader = new Shader("../res/shaders/shader.vs", "../res/shaders/shader.fs");
 
     VAO = InitVAO();
@@ -23,8 +25,12 @@ void GLDrawQuad::Init() {
     glEnable(GL_DEPTH_TEST);
 }
 
+void GLDrawQuad::OnWindowResize() {
+    glViewport(0, 0, Context::ScreenWidth, Context::ScreenHeight);
+}
+
 void GLDrawQuad::Update() {
-    auto window = Context::GetWindow();
+    auto window = Context::CurWindow;
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
@@ -51,12 +57,6 @@ void GLDrawQuad::Update() {
 
 void GLDrawQuad::Draw() {
     // rendering commands here
-    // the glClearColor function is a state-setting function and glClear is a state-using function
-    // uses the current state to retrieve the clearing color from.
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-    // Just like clearing the color buffer, we can clear the depth buffer by specifying the DEPTH_BUFFER_BIT
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture0);
@@ -85,7 +85,7 @@ void GLDrawQuad::Draw() {
     view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
     projection = glm::perspective(glm::radians(45.0f),
-                                  (float) Context::ScreenWidth() / (float) Context::ScreenHeight(), 0.1f, 100.0f);
+                                  (float) Context::ScreenWidth / (float) Context::ScreenHeight, 0.1f, 100.0f);
 
     // retrieve the matrix uniform locations
     unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");

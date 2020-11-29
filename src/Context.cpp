@@ -5,22 +5,11 @@
 #include <GLFW/glfw3.h>
 #include "Context.h"
 
-int Context::ScreenWidth() {
-    return 800;
-}
+int Context::ScreenWidth = 800;
 
-int Context::ScreenHeight() {
-    return 600;
-}
+int Context::ScreenHeight = 600;
 
 GLFWwindow* Context::CurWindow = nullptr;
 
-GLFWwindow *Context::GetWindow() {
-    return CurWindow;
-}
-
-void Context::SetWindow(GLFWwindow *window) {
-    CurWindow = window;
-}
 
 

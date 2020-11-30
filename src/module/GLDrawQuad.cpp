@@ -21,8 +21,7 @@ void GLDrawQuad::Init() {
     // uncomment this call to draw in wireframe polygons.
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    // render loop
-    glEnable(GL_DEPTH_TEST);
+
 }
 
 void GLDrawQuad::OnWindowResize() {
@@ -84,8 +83,8 @@ void GLDrawQuad::Draw() {
 
     view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
-    projection = glm::perspective(glm::radians(45.0f),
-                                  (float) Context::ScreenWidth / (float) Context::ScreenHeight, 0.1f, 100.0f);
+    float aspect = Context::ScreenHeight == 0 ? 1.0 : (float) Context::ScreenWidth / (float) Context::ScreenHeight;
+    projection = glm::perspective(glm::radians(45.0f), aspect, 0.1f, 100.0f);
 
     // retrieve the matrix uniform locations
     unsigned int modelLoc = glGetUniformLocation(shader->ID, "model");

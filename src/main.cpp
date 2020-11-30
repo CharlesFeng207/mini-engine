@@ -13,6 +13,12 @@ using namespace std;
 
 vector<IModule *> *modules = nullptr;
 
+void CreateModules() {
+    modules = new vector<IModule *>();
+    modules->push_back(new GLDrawQuad());
+    modules->push_back(new GUIDemo());
+}
+
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
     Context::ScreenWidth = width;
@@ -20,7 +26,6 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
     for (auto &module : *modules)
         module->OnWindowResize();
 }
-
 
 GLFWwindow *initWindows() {
     // In the main function we first initialize GLFW with glfwInit,
@@ -39,7 +44,7 @@ GLFWwindow *initWindows() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Note that on Mac OS X you need to add glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); to your initialization code for it to work
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+//    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     GLFWwindow *window = glfwCreateWindow(Context::ScreenWidth, Context::ScreenHeight, "Mini-Engine", nullptr, NULL);
     if (window == nullptr) {
@@ -61,11 +66,6 @@ GLFWwindow *initWindows() {
     return window;
 }
 
-void CreateModules() {
-    modules = new vector<IModule *>();
-    modules->push_back(new GLDrawQuad());
-    modules->push_back(new GUIDemo());
-}
 
 int main() {
 //    FreeConsole();
@@ -81,6 +81,8 @@ int main() {
 
     for (auto &module : *modules)
         module->Init();
+
+    glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window)) {
 

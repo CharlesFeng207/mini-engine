@@ -13,7 +13,7 @@ void GUIDemo::Init() {
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
-//    io.Fonts->AddFontFromFileTTF("../res/fonts/Font_king.OTF", 22.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+    io.Fonts->AddFontFromFileTTF("res/fonts/WENYUE-XINQINGNIANTI-NC-W8-1.OTF", 22.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
     // Setup Dear ImGui style
 //    ImGui::StyleColorsDark();
     ImGui::StyleColorsClassic();

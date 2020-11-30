@@ -21,6 +21,8 @@ include_directories(include)
 # set link search path.
 link_directories(lib)
 
+file(COPY ./res DESTINATION /)
+
 add_executable(MiniEngine ${proj_src} ${module})
 
 target_link_libraries(MiniEngine glfw3 opengl32 imgui)

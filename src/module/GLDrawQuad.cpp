@@ -11,12 +11,12 @@ void GLDrawQuad::Init() {
 
     OnWindowResize();
 
-    shader = new Shader("../res/shaders/shader.vs", "../res/shaders/shader.fs");
+    shader = new Shader("res/shaders/shader.vs", "res/shaders/shader.fs");
 
     VAO = InitVAO();
 
-    texture0 = CreateTexture("../res/textures/container.jpg", GL_RGB);
-    texture1 = CreateTexture("../res/textures/window.png", GL_RGBA);
+    texture0 = CreateTexture("res/textures/container.jpg", GL_RGB);
+    texture1 = CreateTexture("res/textures/window.png", GL_RGBA);
 
     // uncomment this call to draw in wireframe polygons.
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

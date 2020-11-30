@@ -63,7 +63,7 @@ GLFWwindow *initWindows() {
 
 void CreateModules() {
     modules = new vector<IModule *>();
-//    modules->push_back(new GLDrawQuad());
+    modules->push_back(new GLDrawQuad());
     modules->push_back(new GUIDemo());
 }
 
